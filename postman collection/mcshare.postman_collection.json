@@ -1,0 +1,177 @@
+{
+	"info": {
+		"_postman_id": "4a2c7260-dad0-4e5f-9215-8f845702bb44",
+		"name": "mcshare",
+		"description": "This is an API management for customer transaction",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Upload Customer Details",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/khoda/Desktop/MCB/XML.xml"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8080/uploadCustomerDetails",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"uploadCustomerDetails"
+					]
+				},
+				"description": "1.\tImplement an API to upload and validate the provided XML file and store it in a database.\r\nThis endpoint is used to upload XML , validate the xml , create the customers and store the file in the database\r\n2.\tValidating the following fields as per rule \r\na.\tFor individuals, customer must be at least 18 years old (system date – date of birth >= 18)\r\nb.\tNumber of shares must be an integer and greater than 0 \r\nc.\tShare_Price must be a number greater than 0 up to two decimal places\r\n4.\tStoring valid records in tables in the database."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Balance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/GetBalance",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"GetBalance"
+					]
+				},
+				"description": "6.\tImplement a query method to return the following:\r\na.\tID\t\r\nb.\tCustomer Name\t\r\nc.\tDate Birth/Incorporated\t\r\nd.\tCustomer Type\t\r\ne.\tNumber of Shares\t\r\nf.\tShare Price Per unit\t\r\ng.\tBalance (Number of Shares * Share Price per unit)"
+			},
+			"response": []
+		},
+		{
+			"name": "GetRecords",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/GetRecords/view?view=C11233",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"GetRecords",
+						"view"
+					],
+					"query": [
+						{
+							"key": "view",
+							"value": "C11233"
+						}
+					]
+				},
+				"description": "5.\tImplement a REST API to list all records as well as retrieve individual records.\r\n\r\nlocalhost:8080/GetRecords/view?view=all OR localhost:8080/GetRecords/view?view=C11233 , where C11233 is the ID of the customer"
+			},
+			"response": []
+		},
+		{
+			"name": "GetRecordByName",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8080/GetRecordByName/name?name=ohn doe",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"GetRecordByName",
+						"name"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "ohn doe"
+						}
+					]
+				},
+				"description": "8.\tImplement a REST method to search on the Customer’s Name.\r\na.\tThe search should be on any part of the customer’s name.  E.g. if user inputs ‘ohn Do’, the search engine should be able to retrieve the record for customer with customer name ‘Mr John Doe’. Query should NOT be case sensitive.\r\n\r\ne.g localhost:8080/GetRecordByName/name?name=ohn doe"
+			},
+			"response": []
+		},
+		{
+			"name": "GetCSV",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/GetCSV/name?name=ohn doe",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"GetCSV",
+						"name"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "ohn doe"
+						}
+					]
+				},
+				"description": "9.\tImplement a method to allow downloading of a subset of the data as CSV.\r\n\r\nDownload subset of customer data , can be done by searching name only"
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateCustomerDetails",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"customerID\": \"C11233\",\r\n        \"customerType\": \"Individual\",\r\n        \"dateOfBirth\": \"16/09/1994\",\r\n        \"mailingAddress\": {\r\n            \"addressLine1\": \"13\",\r\n            \"addressLine2\": \" Sadally\",\r\n            \"townCity\": \"vacoas\",\r\n            \"country\": \"Mauritius\"\r\n        },\r\n        \"contactDetails\": {\r\n            \"contactName\": \"Mr Nabeel\",\r\n            \"contactNumber\": \"59028747\"\r\n        },\r\n        \"sharesDetails\": {\r\n            \"numShares\": \" 120000\",\r\n            \"sharePrice\": \"11.0\",\r\n            \"balance\": \"117311.5\"\r\n        }\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/UpdateCustomerDetails",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"UpdateCustomerDetails"
+					]
+				},
+				"description": "7.\tImplement appropriate REST methods to allow update of specific records.\r\na.\tThe column ‘ID’ is not amendable in any case\r\nb.\tIf customer is a corporate, then column ‘Number of Shares’ is not amendable\r\nc.\tWhen amending column ‘Number of Shares’ or ‘Share Price per unit’, you need to recompute column ‘Balance’\r\n\r\nJSON E.G :\r\n\r\n[\r\n    {\r\n        \"customerID\": \"C11233\",\r\n        \"customerType\": \"Individual\",\r\n        \"dateOfBirth\": \"16/09/1994\",\r\n        \"mailingAddress\": {\r\n            \"addressLine1\": \"13\",\r\n            \"addressLine2\": \" Sadally\",\r\n            \"townCity\": \"vacoas\",\r\n            \"country\": \"Mauritius\"\r\n        },\r\n        \"contactDetails\": {\r\n            \"contactName\": \"Mr Nabeel\",\r\n            \"contactNumber\": \"59028747\"\r\n        },\r\n        \"sharesDetails\": {\r\n            \"numShares\": \" 120000\",\r\n            \"sharePrice\": \"11.0\",\r\n            \"balance\": \"117311.5\"\r\n        }\r\n    }\r\n]"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
