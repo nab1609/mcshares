@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="RequestDoc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Doc_Date"/>
+        <xs:element ref="Doc_Ref"/>
+        <xs:element ref="Doc_Data"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Doc_Date" type="xs:string"/>
+  <xs:element name="Doc_Ref" type="xs:NCName"/>
+  <xs:element name="Doc_Data">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="DataItem_Customer"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DataItem_Customer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="customer_id"/>
+        <xs:element ref="Customer_Type"/>
+        <xs:element ref="Date_Of_Birth"/>
+        <xs:element ref="Date_Incorp"/>
+        <xs:choice>
+          <xs:element ref="REGISTRATION_NO"/>
+          <xs:element ref="Registration_No"/>
+        </xs:choice>
+        <xs:element ref="Mailing_Address"/>
+        <xs:element ref="Contact_Details"/>
+        <xs:element ref="Shares_Details"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="customer_id" type="xs:NCName"/>
+  <xs:element name="Customer_Type" type="xs:NCName"/>
+  <xs:element name="Date_Of_Birth" type="xs:string"/>
+  <xs:element name="Date_Incorp" type="xs:string"/>
+  <xs:element name="REGISTRATION_NO">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="Registration_No" type="xs:NCName"/>
+  <xs:element name="Mailing_Address">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Address_Line1"/>
+        <xs:element ref="Address_Line2"/>
+        <xs:element ref="Town_City"/>
+        <xs:element ref="Country"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Address_Line1" type="xs:string"/>
+  <xs:element name="Address_Line2" type="xs:string"/>
+  <xs:element name="Town_City" type="xs:string"/>
+  <xs:element name="Country" type="xs:string"/>
+  <xs:element name="Contact_Details">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Contact_Name"/>
+        <xs:element ref="Contact_Number"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Contact_Name" type="xs:string"/>
+  <xs:element name="Contact_Number" type="xs:string"/>
+  <xs:element name="Shares_Details">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Num_Shares"/>
+        <xs:element ref="Share_Price"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  
+  <!-- Num_shares validation to take integer greater than 0 -->
+  <xs:element name="Num_Shares">
+  <xs:simpleType>
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="1"/>
+    </xs:restriction>
+  </xs:simpleType>
+  </xs:element>
+
+  <!-- Share_Price validation to take integer greater than 0 2 decimal places -->
+  <xs:element name="Share_Price">
+  <xs:simpleType>
+    <xs:restriction base="xs:decimal">
+	  <xs:minInclusive value="1"/>
+      <xs:fractionDigits fixed="true" value="2" />
+    </xs:restriction>
+  </xs:simpleType>
+  </xs:element>
+  
+</xs:schema>

@@ -1,0 +1,2 @@
+Customer_id,Customer_Type,Date_Of_Birth,Date_Incorp,Registration_No,Contact_Name,Contact_Number,Address_Line1,Address_Line2,Town_City,Country,Num_Shares,Share_Price,Balance
+C11233,Individual,19/07/1987,null,null,Mr John Doe,7784051,21, Downing Street,London,England, 10200, 11.4,116280.0
