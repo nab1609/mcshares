@@ -37,6 +37,7 @@ public class XmlController {
 			if (file.getOriginalFilename() == null ) {
 				
 				entity =  new ResponseEntity<>("NO FILE HAS BEEN UPLOADED",HttpStatus.NOT_FOUND);
+				Utils.logErrorMessage("NO FILE HAS BEEN UPLOADED");
 				
 			}else
 			{
@@ -44,6 +45,7 @@ public class XmlController {
 				if(!file.getContentType().equals("application/xml"))
 				{				
 					entity =  new ResponseEntity<>("BAD FILE EXTENSION",HttpStatus.UNSUPPORTED_MEDIA_TYPE);
+					Utils.logErrorMessage("BAD FILE EXTENSION");
 					
 				}else
 				{
@@ -66,11 +68,13 @@ public class XmlController {
 						{
 							System.out.println("Customer has been created");
 							entity =  new ResponseEntity<>("UPLOADED + CREATED CUSTOMER",HttpStatus.OK);
+							Utils.logErrorMessage("UPLOADED + CREATED CUSTOMER");
 						}
 						
 					}else
 					{
 						entity = new ResponseEntity<>("XML IS NOT VALID",HttpStatus.BAD_REQUEST);
+						Utils.logErrorMessage("XML IS NOT VALID");
 					}
 					
 				}
